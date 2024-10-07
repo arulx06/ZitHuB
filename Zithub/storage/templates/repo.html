@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ repo.name }} - Files</title>
+</head>
+<body>
+    <h1>Files in Repository: {{ repo.name }}</h1>
+
+    <ul>
+      {% for file in files %}
+        <li>
+            <a href="{{ url_for('open_file', filename=file) }}">{{ file }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+
+
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>
+
+{% endblock %}

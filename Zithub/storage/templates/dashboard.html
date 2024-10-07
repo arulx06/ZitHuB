@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    <div class="form-group" style="max-width: 500px; margin: auto;">
+        <label for="repo_name">Create Repository:</label>
+        <input type="text" name="repo_name" class="form-control" placeholder="Repository Name">
+        <button type="submit" class="btn btn-primary mt-2">Create Repository</button>
+    </div>
+</form>
+
+<hr>
+
+<!-- File Upload Form -->
+<form method="POST" enctype="multipart/form-data">
+    <div class="form-group" style="max-width: 500px; margin: auto;">
+        <label for="repo">Select Repository:</label>
+        <select name="repo_id" class="form-control">
+            {% for repo in repos %}
+                <option value="{{ repo.id }}">{{ repo.reponame }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="file">Upload File:</label>
+        <input type="file" name="file" class="form-control-file">
+        <button type="submit" class="btn btn-success mt-2">Upload File</button>
+    </div>
+</form>
+
+<hr>
+
+<!-- Display User Repositories -->
+<ul>
+    {% for repo in repos %}
+        <li>
+            <a href="{{ url_for('repo_view', repo_id=repo.id) }}">
+                  (Merkle Root: {{ repo.reponame }})
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+
+<form method="GET" action="{{ url_for('dashboard') }}">
+    <input type="text" name="query" placeholder="Search repositories..." required>
+    <button type="submit">Search</button>
+</form>
+
+<h3>Search Results</h3>
+<ul>
+    {% for repo in search_repos %}
+    <li>{{ repo.reponame }} (Owner: {{ repo.user.username }})</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
