@@ -28,7 +28,11 @@ class Repo(db.Model):
     id=db.Column(db.Integer(),primary_key=True)
     reponame=db.Column(db.String(length=30),nullable=False,unique=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    owner = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    updated_at = db.Column(db.DateTime, onupdate=datetime.utcnow) 
+    owner = db.Column(db.Integer(), db.ForeignKey('user.id'),nullable=False)
+    merkle_root = db.Column(db.String(256))  # Store the Merkle root hash
+    user = db.relationship('User', backref=db.backref('repositories', lazy=True))
+
 
     def __repr__(self):
         return f'Item{self.name}'
