@@ -17,13 +17,19 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         {% if current_user.is_authenticated %}
         <ul class="navbar-nav mr-auto">
-            <li><a class="navbar-brand" href="{{ url_for('dashboard') }}">
-                <i class="bi bi-hdd-stack"></i>
-                My Repos
-            </a></li>
+            <li><span class="navbar-brand">
+                <a class="icon-square" href="{{ url_for('home_page') }}" >
+                    Z  
+                </a>                
+                Zit Hub
+            </span></li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li><a class="navbar-brand" href="{{ url_for('logout_page') }}">
+            <li><a class="navbar-brand" href="{{ url_for('dashboard') }}">
+                <i class="bi bi-hdd-stack"></i>
+                Dashboard
+            </a></li>
+            <li><a class="navbar-brand ml-2" href="{{ url_for('logout_page') }}">
                 <i class="bi bi-box-arrow-right"></i>
                 Log out
             </a></li>
@@ -47,6 +53,7 @@
     </nav>
 
     {% block content %}
+    
     {% endblock %}
 
     <style>
