@@ -29,5 +29,18 @@
 
         </form>
     </div>
+
 </body>
+<script>
+    window.onload = function() {
+        // Get flashed messages and convert them to an array
+        var messages = "{{ get_flashed_messages()|tojson }}";
+        if (messages.length > 0) {
+            // Join messages into a single string
+            var messageString = messages.join('\n'); 
+            alert(messageString);  
+        }
+    };
+</script>
+
 {% endblock %}

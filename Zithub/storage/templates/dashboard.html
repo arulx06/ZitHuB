@@ -26,6 +26,16 @@
             </div>
         </form>
     </div>
+    
+    <script>
+        window.onload = function() {
+            var message = "{{ get_flashed_messages()|safe }}";
+            if (message.length>0) {
+                alert(message);  // Display popup with message
+            }
+        };
+    </script>
+    
 
     <hr>
 
